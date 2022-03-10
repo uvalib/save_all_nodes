@@ -1,0 +1,3 @@
+save all nodes:
+  title: 'Use the Save All Nodes form'
+  restrict access: TRUE

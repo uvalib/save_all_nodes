@@ -1,0 +1,15 @@
+save_all_nodes.form:
+  path: '/admin/config/development/save-all-nodes'
+  defaults:
+    _form: '\Drupal\save_all_nodes\Form\SaveAllNodesForm'
+    _title: 'Save All Nodes'
+  requirements:
+    _permission: 'save all nodes'
+
+save_all_nodes.settings_form:
+  path: '/admin/config/development/save-all-nodes/settings'
+  defaults:
+    _form: '\Drupal\save_all_nodes\Form\SaveAllNodesSettingsForm'
+    _title: 'Settings'
+  requirements:
+    _permission: 'save all nodes'
