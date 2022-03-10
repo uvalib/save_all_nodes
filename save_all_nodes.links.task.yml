@@ -4,6 +4,6 @@ save_all_nodes.settings_tab:
   base_route: save_all_nodes.settings_form
 
 save_all_nodes.run_tab:
-  route_name: verb_save_all_nodes.form
+  route_name: save_all_nodes.form
   title: 'Save Nodes'
   base_route: save_all_nodes.settings_form
