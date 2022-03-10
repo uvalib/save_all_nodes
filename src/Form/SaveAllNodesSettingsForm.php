@@ -95,6 +95,13 @@ class SaveAllNodesSettingsForm extends FormBase {
       '#default_value' => $this->config->get('new_revision'),
     ];
 
+    $form['translations'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Save translations on node save.'),
+      '#description' => $this->t('Enable or disable to save translations when node is saved.'),
+      '#default_value' => $this->config->get('translations'),
+    ];
+
     $form['chunk_size'] = [
       '#type' => 'number',
       '#title' => $this->t('Chunk size'),
@@ -121,9 +128,11 @@ class SaveAllNodesSettingsForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $chunk_size = !empty($form_state->getValue('chunk_size')) ? (int) $form_state->getValue('chunk_size') : 250;
+
     $config = $this->configFactory->getEditable('save_all_nodes.settings');
     $config->set('path_auto', $form_state->getValue('path_auto'));
     $config->set('new_revision', $form_state->getValue('new_revision'));
+    $config->set('translations', $form_state->getValue('translations'));
     $config->set('chunk_size', $chunk_size);
     $config->save();
   }

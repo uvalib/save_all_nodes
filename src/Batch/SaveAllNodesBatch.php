@@ -23,28 +23,43 @@ class SaveAllNodesBatch {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public static function batchOperation(array $chunk, &$context) {
-    $applyPathAuto = FALSE;
-    $applyRevisions = FALSE;
     $config = \Drupal::config('save_all_nodes.settings');
+
+    // Flag to update path alias.
+    $applyPathAuto = FALSE;
     if ($config && $config->get('path_auto')) {
       $applyPathAuto = TRUE;
     }
+
+    // Flag for new revision.
+    $applyRevisions = FALSE;
     if ($config && $config->get('new_revision')) {
       $applyRevisions = TRUE;
     }
+
+    // Flag for saving translations.
+    $saveTranslations = FALSE;
+    if ($config && $config->get('translations')) {
+      $saveTranslations = TRUE;
+    }
+
     foreach ($chunk as $nid) {
       /** @var \Drupal\node\Entity\Node $node */
       if ($node = Node::load($nid)) {
+
         // Update alias if specified.
         if ($applyPathAuto) {
           $node->set("path", ["pathauto" => PathautoState::CREATE]);
         }
+
         // Create new revision or not if specified.
         $node->setNewRevision($applyRevisions);
+
         // Save default node.
         $node->save();
+
         // Check/save translations
-        if ($node->getTranslationLanguages(FALSE)) {
+        if ($node->getTranslationLanguages(FALSE) && $saveTranslations) {
           foreach ($node->getTranslationLanguages(FALSE) as $langcode => $language) {
             if ($node->hasTranslation($langcode)) {
               $translatedNode = $node->getTranslation($langcode);
@@ -58,6 +73,8 @@ class SaveAllNodesBatch {
             }
           }
         }
+
+        // Save node id to results.
         $context['results'][] = $nid;
       }
     }
