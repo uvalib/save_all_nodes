@@ -9,7 +9,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drush\Commands\DrushCommands;
 
 /**
- * Class SaveAllNodesCommands
+ * Save All Nodes Commands.
  *
  * @package Drupal\save_all_nodes\Commands
  */
@@ -18,11 +18,15 @@ class SaveAllNodesCommands extends DrushCommands {
   use StringTranslationTrait;
 
   /**
+   * The logger.
+   *
    * @var \Drupal\Core\Logger\LoggerChannelInterface
    */
   protected $logger;
 
   /**
+   * The cache backend.
+   *
    * @var \Drupal\Core\Cache\CacheBackendInterface
    */
   protected $configFactory;
@@ -38,13 +42,16 @@ class SaveAllNodesCommands extends DrushCommands {
    * SaveAllNodesCommands constructor.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
    * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $loggerFactory
+   *   The logger factory.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    */
   public function __construct(
-    ConfigFactoryInterface        $config_factory,
+    ConfigFactoryInterface $config_factory,
     LoggerChannelFactoryInterface $loggerFactory,
-    EntityTypeManagerInterface    $entity_type_manager
+    EntityTypeManagerInterface $entity_type_manager
   ) {
     parent::__construct();
     $this->logger = $loggerFactory->get('save_all_nodes');
@@ -55,9 +62,10 @@ class SaveAllNodesCommands extends DrushCommands {
   /**
    * Save all nodes.
    *
-   * @option node_type
-   *
    * @param string $node_type
+   *   The node type.
+   *
+   * @option node_type
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -77,7 +85,7 @@ class SaveAllNodesCommands extends DrushCommands {
 
     $this->output()->writeln('Total nodes found: ' . count($nids));
 
-    // Chunk size
+    // Chunk size.
     $chunk_size = 250;
     if (!empty($config->get('chunk_size'))) {
       $chunk_size = $config->get('chunk_size');

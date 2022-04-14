@@ -31,11 +31,15 @@ class SaveAllNodesForm extends FormBase {
   protected $messenger;
 
   /**
+   * The config factory.
+   *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
 
   /**
+   * The config.
+   *
    * @var \Drupal\Core\Config\ImmutableConfig
    */
   protected $config;
@@ -48,11 +52,12 @@ class SaveAllNodesForm extends FormBase {
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
    *   The messenger.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
    */
   public function __construct(
     EntityTypeManagerInterface $entity_type_manager,
-    MessengerInterface         $messenger,
-    ConfigFactoryInterface     $config_factory
+    MessengerInterface $messenger,
+    ConfigFactoryInterface $config_factory
   ) {
     $this->entityTypeManager = $entity_type_manager;
     $this->messenger = $messenger;

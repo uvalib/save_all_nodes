@@ -58,7 +58,7 @@ class SaveAllNodesBatch {
         // Save default node.
         $node->save();
 
-        // Check/save translations
+        // Check/save translations.
         if ($node->getTranslationLanguages(FALSE) && $saveTranslations) {
           foreach ($node->getTranslationLanguages(FALSE) as $langcode => $language) {
             if ($node->hasTranslation($langcode)) {
