@@ -65,8 +65,6 @@ class SaveAllNodesCommands extends DrushCommands {
    * @param string $node_type
    *   The node type.
    *
-   * @option node_type
-   *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    *
