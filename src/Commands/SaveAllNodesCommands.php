@@ -7,6 +7,7 @@ use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drush\Commands\DrushCommands;
+use Psr\Log\LoggerInterface;
 
 /**
  * Save All Nodes Commands.
@@ -20,9 +21,9 @@ class SaveAllNodesCommands extends DrushCommands {
   /**
    * The logger.
    *
-   * @var \Drupal\Core\Logger\LoggerChannelInterface
+   * @var LoggerInterface|null
    */
-  protected $logger;
+  protected ?\Psr\Log\LoggerInterface $logger;
 
   /**
    * The cache backend.
