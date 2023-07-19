@@ -1,7 +1,7 @@
 name: Save All Nodes
 type: module
 description: This module provides a form and a Drush command both implementing Batch API to save all nodes of a selected type.
-core_version_requirement: ^8.8 || ^9 || ^10
+core_version_requirement: ^10
 configure: save_all_nodes.settings_form
 dependencies:
   - drupal:node
