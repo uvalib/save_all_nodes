@@ -73,14 +73,13 @@ class SaveAllNodesCommands extends DrushCommands {
    * @validate-module-enabled save_all_nodes
    */
   public function saveNodes(string $node_type = 'page') {
-
     $this->output()->writeln('Node type: ' . $node_type);
     $config = $this->configFactory->get('save_all_nodes.settings');
 
     // An array with lots of node IDs.
     $node_types = [$node_type];
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $nids = $query->condition('type', $node_types, 'IN')->execute();
+    $nids = $query->accessCheck(true)->condition('type', $node_types, 'IN')->execute();
 
     $this->output()->writeln('Total nodes found: ' . count($nids));
 

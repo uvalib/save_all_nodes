@@ -190,7 +190,7 @@ class SaveAllNodesForm extends FormBase {
    */
   public function getNodeIds(array $node_types) {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    return $query->condition('type', $node_types, 'IN')->execute();
+    return $query->accessCheck(true)->condition('type', $node_types, 'IN')->execute();
   }
 
 }
