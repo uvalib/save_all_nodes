@@ -17,7 +17,7 @@
     "license": "GPL-2.0-or-later",
     "minimum-stability": "dev",
     "require": {
-        "drupal/core": "^10",
+        "drupal/core": "^10 || ^11",
         "drupal/pathauto": "^1.8"
     }
 }

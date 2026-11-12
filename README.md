@@ -65,3 +65,12 @@ Defaults to page if no content type is provided.
 
 - George Anderson - [geoanders](https://www.drupal.org/u/geoanders)
 - Michael O'Hara - [mikeohara](https://www.drupal.org/u/mikeohara)
+
+## UVA Library fork
+
+This is a fork of the drupal.org project `save_all_nodes` (branch `2.x`, including the
+`accessCheck(true)` fix from issue #3400676) with one change: `core_version_requirement` and the
+`drupal/core` requirement are widened to `^10 || ^11` so it installs on Drupal 11. No code changes.
+
+It exists only because upstream has no Drupal 11 release. **Review after the Drupal 11 upgrade
+whether a better approach exists** (upstream release, a replacement, or removing the module).
